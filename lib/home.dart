@@ -1,3 +1,4 @@
+import 'package:cup_coffee_app/details.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -5,96 +6,34 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return SafeArea(
-      child: Scaffold(bottomSheet: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 112,
-        decoration: BoxDecoration(color: Colors.white, boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 10)
-        ]),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 20, 32, 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Image.asset('assets/img/home.png'),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  const Text(
-                    'Home',
-                    style: TextStyle(
-                        color: Color(0xffA0A3B1),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset('assets/img/moon.png'),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  const Text(
-                    'Sleep',
-                    style: TextStyle(
-                        color: Color(0xffA0A3B1),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset('assets/img/meditation.png'),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  const Text(
-                    'Medidate',
-                    style: TextStyle(
-                        color: Color(0xffA0A3B1),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset('assets/img/music.png'),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  const Text(
-                    'Music',
-                    style: TextStyle(
-                        color: Color(0xffA0A3B1),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Image.asset('assets/img/man.png'),
-                  const SizedBox(
-                    height: 17,
-                  ),
-                  const Text(
-                    'Afsar',
-                    style: TextStyle(
-                        color: Color(0xffA0A3B1),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14),
-                  )
-                ],
-              ),
-            ],
+      child: Scaffold(
+        bottomSheet: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 82,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(50),
+                  topLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(50),
+                  topRight: Radius.circular(20)),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(color: Colors.black.withOpacity(0.3), blurRadius: 10)
+              ]),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(32, 20, 32, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset('assets/img/home.png'),
+                Image.asset('assets/img/shopping-bag.png'),
+                Image.asset('assets/img/map-pin.png'),
+                Image.asset('assets/img/heart.png'),
+                Image.asset('assets/img/user.png'),
+              ],
+            ),
           ),
         ),
-      ),
         body: Padding(
           padding: EdgeInsets.fromLTRB(30, 51, 30, 30),
           child: SingleChildScrollView(
@@ -140,8 +79,8 @@ class Home extends StatelessWidget {
                     Container(
                       width: 58,
                       height: 58,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(20)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20)),
                       child: Image.asset('assets/img/man.png'),
                     )
                   ],
@@ -195,11 +134,21 @@ class Home extends StatelessWidget {
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
-                              color: Colors.red,
                             ),
                             margin: const EdgeInsets.only(right: 20),
                             height: 180,
                             width: 261,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => Details(),
+                                ));
+                              },
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.asset(
+                                      'assets/img/placeholder.png')),
+                            ),
                           ),
                           const SizedBox(
                             height: 13,
@@ -242,11 +191,12 @@ class Home extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 7,),
+                          const SizedBox(
+                            height: 7,
+                          ),
                           const Padding(
                             padding: EdgeInsets.only(left: 15),
                             child: Row(
-
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
@@ -271,15 +221,27 @@ class Home extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 20,),
-                Text('Nearest coffee shops',style:TextStyle(
-                  fontFamily: 'Poppins-Medium',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),),
-
-                SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Nearest coffee shops',
+                      style: TextStyle(
+                        fontFamily: 'Poppins-Medium',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
+                    ),
+                    TextButton(onPressed: () {}, child: Text('View all',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w400,color: Color(0xffFFB067)),))
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 265,
@@ -320,15 +282,15 @@ class Home extends StatelessWidget {
                                 SizedBox(
                                   width: 30,
                                 ),
-                               
                               ],
                             ),
                           ),
-                          const SizedBox(height: 7,),
+                          const SizedBox(
+                            height: 7,
+                          ),
                           const Padding(
                             padding: EdgeInsets.only(left: 15),
                             child: Row(
-
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Icon(
@@ -352,6 +314,9 @@ class Home extends StatelessWidget {
                       );
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 30,
                 ),
               ],
             ),
